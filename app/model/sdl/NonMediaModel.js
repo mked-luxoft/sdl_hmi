@@ -80,6 +80,9 @@ SDL.SDLNonMediaModel = SDL.ABSAppModel.extend({
 
     this.set('constantTBTParams', null);
 
+    this.set('initialColorScheme.dayColorScheme', this.dayColorScheme);
+    this.set('initialColorScheme.nightColorScheme', this.nightColorScheme);
+    this.set('initialColorScheme.displayLayout', this.displayLayout);
     this.set('VRCommands', []);
     this.set('tbtActivate', false);
     this.set('globalProperties.helpPrompt', []);
@@ -87,6 +90,10 @@ SDL.SDLNonMediaModel = SDL.ABSAppModel.extend({
     this.set('globalProperties.keyboardProperties', Em.Object.create());
     this.set('globalProperties.keyboardProperties.keyboardLayout', 'QWERTY');
     this.set('globalProperties.keyboardProperties.limitedCharacterList', []);
+
+    this.set('inactiveWindows', []);
+    this.set('backgroundWindows', []);
+    this.set('activeWindows', []);
 
     this.set('commandsList', {'top': []});
     this.set('softButtons', []);

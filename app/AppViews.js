@@ -47,7 +47,7 @@ SDL.AppViews = Em.ContainerView.extend(
       SDL.PhoneView,
       SDL.ClimateView,
       SDL.NavigationView,
-      SDL.ControlButtons,
+      SDL.RightSideView,
       SDL.SettingsView,
       SDL.TurnByTurnView,
       SDL.TBTTurnList,
@@ -106,7 +106,7 @@ SDL.AppViews = Em.ContainerView.extend(
         text: 'Incoming call!'
       }
     ),
-    
+  
     /*
      * This method is called when the app is fully rendered and ready to be
      * displayed. We notify the backend to hide the splash and load internal
