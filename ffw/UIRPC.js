@@ -161,6 +161,11 @@ FFW.UI = FFW.RPCObserver.create(
             if (SDL.SDLModel.onUIAlert(request.params, request.id)) {
               SDL.SDLController.onSystemContextChange(request.params.appID);
             }
+            SDL.SDLModel.data.registeredApps.forEach(app => {
+              app.activeWindows.forEach(widget => {
+                SDL.SDLController.onSystemContextChange(app.appID, widget.windowID);
+              })
+            })
             break;
           }
           case 'UI.Show':
@@ -1479,7 +1484,7 @@ FFW.UI = FFW.RPCObserver.create(
      * @param {String}
      *            systemContextValue
      */
-    OnSystemContext: function(systemContextValue, appID) {
+    OnSystemContext: function(systemContextValue, appID, windowID) {
       Em.Logger.log('FFW.UI.OnSystemContext');
       // send repsonse
       var JSONMessage = {
@@ -1491,6 +1496,9 @@ FFW.UI = FFW.RPCObserver.create(
       };
       if (appID) {
         JSONMessage.params.appID = appID;
+      }
+      if(windowID) {
+        JSONMessage.params.windowID = windowID;
       }
       this.client.send(JSONMessage);
     },
