@@ -51,11 +51,18 @@ SDL.SettingsController = Em.Object.create(
      */
     getSystemTimeButtonText: 'GetSystemTime result code - SUCCESS',
 
+    /*
+     * @name modelBinding
+     * @description Model of binding
+     */
+    modelBinding: 'SDL.RCModulesController',
+
     /**
      * File name for SDL.OnSystemRequest
      * Came in SDL.PolicyUpdate request
      */
     policyUpdateFile: null,
+
     /**
      * Data of current requested devices which access will be allowed or
      * disallowed.
@@ -414,10 +421,10 @@ SDL.SettingsController = Em.Object.create(
       }
     },
     turnOnLightSubMenu: function(event){
-      var length = SDL.LightModel.lightState.length;
+      var length = this.model.currentLightModel.lightState.length;
       for(var i = 0; i < length; ++i){
-          if(event.text == SDL.LightModel.lightState[i].id){
-            SDL.LightModel.set('lightSettings',SDL.deepCopy(SDL.LightModel.lightState[i]));
+          if(event.text == this.model.currentLightModel.lightState[i].id){
+            this.model.currentLightModel.set('lightSettings',SDL.deepCopy(this.model.currentLightModel.lightState[i]));
             break;
           }
       }
@@ -425,7 +432,7 @@ SDL.SettingsController = Em.Object.create(
     },
     turnOnSeat: function () {
       if(!SDL.States.settings.seat.active){
-        SDL.SeatModel.goToStates();
+        this.model.currentSeatModel.goToStates();
         SDL.States.goToStates('settings.seat');
         }
     },

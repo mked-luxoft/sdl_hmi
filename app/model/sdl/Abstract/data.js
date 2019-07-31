@@ -650,6 +650,11 @@ SDL.SDLModelData = Em.Object.create(
       'FI-FI',
       'SK-SK'
     ],
+
+    /**
+     * @description List of available display modes
+     * @type {Array}
+     */
     imageModeList:[
       'Day mode',
       'Night mode',
@@ -671,7 +676,7 @@ SDL.SDLModelData = Em.Object.create(
             },
             {
               "type": "WIDGET",
-              "maximumNumberOfWindows": 16  
+              "maximumNumberOfWindows": 16
             }],
             "windowCapabilities": [{
               "textFields": [{
@@ -1007,10 +1012,127 @@ SDL.SDLModelData = Em.Object.create(
         }
       }
     },
-     defaultTemplateColorScheme: {
+    defaultTemplateColorScheme: {
       "primaryColor": {"red" : 0 , "green" : 0, "blue" : 0},
       "secondaryColor": {"red" : 0 , "green" : 0, "blue" : 0},
       "backgroundColor": {"red" : 255 , "green" : 255, "blue" : 255}
+    },
+    /**
+     * @description Map of supported vehicles and array representing their
+     * seats and locations
+     * @type {Map}
+     */
+    vehicleSeatRepresentation: {
+      'no_emulation' : [
+        {
+          col: 0,
+          row: 0,
+          level: 0,
+          colspan: 1,
+          rowspan: 1,
+          levelspan: 1
+        }
+      ],
+      'vehicle_2x3' : [
+        {
+          col: 0,
+          row: 0,
+          level: 0,
+          colspan: 1,
+          rowspan: 1,
+          levelspan: 1
+        },
+        {
+          col: 2,
+          row: 0,
+          level: 0,
+          colspan: 1,
+          rowspan: 1,
+          levelspan: 1
+        },
+        {
+          col: 0,
+          row: 1,
+          level: 0,
+          colspan: 1,
+          rowspan: 1,
+          levelspan: 1
+        },
+        {
+          col: 1,
+          row: 1,
+          level: 0,
+          colspan: 1,
+          rowspan: 1,
+          levelspan: 1
+        },
+        {
+          col: 2,
+          row: 1,
+          level: 0,
+          colspan: 1,
+          rowspan: 1,
+          levelspan: 1
+        }
+      ],
+      'vehicle_3x3' : [
+        {
+          col: 0,
+          row: 0,
+          level: 0,
+          colspan: 1,
+          rowspan: 1,
+          levelspan: 1
+        },
+        {
+          col: 2,
+          row: 0,
+          level: 0,
+          colspan: 1,
+          rowspan: 1,
+          levelspan: 1
+        },
+        {
+          col: 0,
+          row: 1,
+          level: 0,
+          colspan: 1,
+          rowspan: 1,
+          levelspan: 1
+        },
+        {
+          col: 2,
+          row: 1,
+          level: 0,
+          colspan: 1,
+          rowspan: 1,
+          levelspan: 1
+        },
+        {
+          col: 0,
+          row: 2,
+          level: 0,
+          colspan: 1,
+          rowspan: 1,
+          levelspan: 1
+        },
+        {
+          col: 1,
+          row: 2,
+          level: 0,
+          colspan: 1,
+          rowspan: 1,
+          levelspan: 1
+        },
+        {
+          col: 2,
+          row: 2,
+          level: 0,
+          colspan: 1,
+          rowspan: 1,
+          levelspan: 1
+        }
+      ]
     }
   }
 );
