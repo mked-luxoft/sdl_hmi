@@ -163,9 +163,9 @@ FFW.Navigation = FFW.RPCObserver.create(
       var returnValue=true;
       if(params.nextTurnIcon){
         var image = params.nextTurnIcon.value;
-        var length=image.length;
+        var search_offset = image.lastIndexOf('.');
         str='.png';
-        var isPng=image.includes(str,length-5);
+        var isPng=image.includes(str, search_offset);
         if(!isPng){
           delete params.nextTurnIcon;
           returnValue=false;
@@ -173,9 +173,9 @@ FFW.Navigation = FFW.RPCObserver.create(
       }
       if(params.turnIcon){
         var image = params.turnIcon.value;
-        var length=image.length;
+        var search_offset = image.lastIndexOf('.');
         str='.png';
-        var isPng=image.includes(str,length-5);
+        var isPng=image.includes(str, search_offset);
         if(!isPng){
           delete params.turnIcon;
           returnValue=false;
@@ -186,8 +186,9 @@ FFW.Navigation = FFW.RPCObserver.create(
         for(var i=0;i<countList;i++){
           if(params.turnList[i].turnIcon){
           var image=params.turnList[i].turnIcon.value;
+          var search_offset = image.lastIndexOf('.');
           str='.png';
-          var isPng=image.includes(str,length-5);
+          var isPng=image.includes(str, search_offset);
           if(!isPng){
             delete params.turnList[i].turnIcon;
             returnValue=false;
@@ -199,8 +200,9 @@ FFW.Navigation = FFW.RPCObserver.create(
         var countButtons=params.softButtons.length;
         for(var i=0;i<countButtons;i++){
           var image=params.softButtons[i].image.value;
+          var search_offset = image.lastIndexOf('.');
           str='.png';
-          var isPng=image.includes(str,length-5);
+          var isPng=image.includes(str, search_offset);
           if(!isPng){
             delete params.softButtons[i].image;
             returnValue=false;
