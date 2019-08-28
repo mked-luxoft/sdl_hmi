@@ -69,9 +69,10 @@ SDL.SDLModelData = Em.Object.create(
      * @type {Objetc}
      */
     policyUpdateRetry: {
+      is_retry_postponed : false,
       timeout: null,
       retry: [],
-      try: null,
+      try: 0,
       timer: null,
       oldTimer: 0,
       isRetry: false

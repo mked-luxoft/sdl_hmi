@@ -259,14 +259,13 @@ FFW.BasicCommunication = FFW.RPCObserver
         }
         if (response.result.method == 'SDL.GetURLS') {
           SDL.SDLModel.data.set('policyURLs', response.result.urls);
-          if (response.result.urls.length) {
-            SDL.SettingsController.GetUrlsHandler(response.result.urls);
+          if (FLAGS.ExternalPolicies !== true ) {
+              this.OnSystemRequest('PROPRIETARY');
           } else {
-            this.OnSystemRequest('PROPRIETARY');
-          }
-
-          if (FLAGS.ExternalPolicies === true) {
-            SDL.SettingsController.policyUpdateRetry();
+            if(SDL.SDLModelData.policyUpdateRetry.is_retry_postponed) {
+              SDL.SDLModelData.policyUpdateRetry.is_retry_postponed = false;
+              SDL.SettingsController.policyUpdateRetry();
+            }
           }
         }
       },
@@ -340,9 +339,13 @@ FFW.BasicCommunication = FFW.RPCObserver
             case 'UPDATE_NEEDED':
             {
               messageCode = 'StatusNeeded';
-              if (FLAGS.ExternalPolicies === true && 
-                  SDL.SDLModel.data.policyUpdateRetry.isRetry) {
-                SDL.SettingsController.policyUpdateRetry();
+              if (FLAGS.ExternalPolicies === true ) {
+                if(SDL.SDLModel.data.policyURLs.length == 0) {
+                  SDL.SDLModelData.policyUpdateRetry.is_retry_postponed = true;
+                } else {
+                  console.log("LOLKEK, UPDATE_NEEDED");
+                  SDL.SettingsController.policyUpdateRetry();
+                }
               }
               break;
             }
