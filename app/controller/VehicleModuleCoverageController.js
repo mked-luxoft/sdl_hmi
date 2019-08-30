@@ -264,13 +264,40 @@ SDL.VehicleModuleCoverageController = Em.Object.create({
   },
 
   /**
+   * @function updateModelsUUID
+   * @description Updates models UUID and module info data
+   */
+  updateModelsUUID: function() {
+    var emulation_type = FLAGS.VehicleEmulationType;
+    var saved_settings = this.savedCoverageSettings[emulation_type];
+    var self = this;
+
+    Object.keys(saved_settings).forEach(module_type => {
+      var module_coverage = saved_settings[module_type];
+      if (!Array.isArray(module_coverage)) {
+        module_coverage = [module_coverage];
+      }
+    
+      module_coverage.forEach(
+        function(element, index) {
+          var moduleId = self.getModuleKeyName(element.location);
+          var model = SDL.RCModulesController.modelsNameMapping[module_type];
+
+          SDL.RCModulesController[model][moduleId].set('UUID', element.moduleId);
+          SDL.RCModulesController.moduleUUIDMapping[module_type][moduleId] = element.moduleId;
+      });
+
+      self.setModuleInfo(module_type, module_coverage);
+    });
+  },
+
+  /**
    * @function setModuleInfo
    * @param {String} module_type
    * @param {String} data
    * @description Set module info
    */
-  setModuleInfo: function(module_type, data) {
-    var parsed_settings = JSON.parse(data);
+  setModuleInfo: function(module_type, parsed_settings) {
     switch(module_type) {
       case 'RADIO': {
         SDL.remoteControlCapabilities.remoteControlCapability.radioControlCapabilities.forEach(function(element,index) {
@@ -326,9 +353,7 @@ SDL.VehicleModuleCoverageController = Em.Object.create({
 
     var self = this;
     this.targetView.coverageEditor.activate(function(data) {
-        self.saveModuleSettings(self.targetView.currentModule, data);
-        SDL.RCModulesController.resetData(data,module_type);
-        self.setModuleInfo(self.targetView.currentModule, data);
+        self.saveModuleSettings(self.targetView.currentModule, data);        
     });
   },
 

@@ -160,10 +160,13 @@ SDL.VehicleEmulationView = Em.ContainerView.create({
         actionUp: function(event) {
           this.set('pressed', false);
           this._parentView.set('hide', true);
+          SDL.RCModulesController.populateModels();
+          SDL.VehicleModuleCoverageController.updateModelsUUID();
+
           SDL.RCModulesController.changeCurrentModule(
             document.getElementById("RCModule").value
           );
-          FLAGS.set('lastVehicleEmulationtype', FLAGS.VehicleEmulationType);
+          FLAGS.set('lastVehicleEmulationtype', FLAGS.VehicleEmulationType);          
           var systemCapability = {
             'systemCapability' : {
               'systemCapabilityType': 'REMOTE_CONTROL',
