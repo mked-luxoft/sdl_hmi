@@ -324,11 +324,11 @@ SDL.VehicleModuleCoverageController = Em.Object.create({
         break;
       }
       case 'LIGHT': {
-        SDL.remoteControlCapabilities.remoteControlCapability.lightControlCapabilities.moduleInfo = parsed_settings;
+        SDL.remoteControlCapabilities.remoteControlCapability.lightControlCapabilities.moduleInfo = parsed_settings[0];
         break;
       }
       case 'HMI_SETTINGS': {
-        SDL.remoteControlCapabilities.remoteControlCapability.hmiSettingsControlCapabilities.moduleInfo = parsed_settings;
+        SDL.remoteControlCapabilities.remoteControlCapability.hmiSettingsControlCapabilities.moduleInfo = parsed_settings[0];
         break;
       }
     }
