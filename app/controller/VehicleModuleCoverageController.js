@@ -272,6 +272,11 @@ SDL.VehicleModuleCoverageController = Em.Object.create({
     var saved_settings = this.savedCoverageSettings[emulation_type];
     var self = this;
 
+    if(!saved_settings) {  
+      window.alert(`No saved coverage settings for ${emulation_type}. UUID will not be updated.`);
+      return;
+    }
+
     Object.keys(saved_settings).forEach(module_type => {
       var module_coverage = saved_settings[module_type];
       if (!Array.isArray(module_coverage)) {
