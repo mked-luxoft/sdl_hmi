@@ -73,6 +73,7 @@ FLAGS = Em.Object.create(
     /**
      * Flag for storing last applied vehicle emulation type
      */
-    lastVehicleEmulationtype: 'no_emulation'
+    lastVehicleEmulationtype: 'no_emulation',
+    PolicyUpdateMode: "PTUWithMobile"
   }
 );
